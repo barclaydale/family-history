@@ -12,11 +12,6 @@
 .DS_Store
 *.pem
 
-# The source slide deck. Kept out of git for its size — everything the site needs was
-# transcribed into public/data/*.js and public/photos/. Keep your own copy alongside
-# this checkout; see the README.
-*.pdf
-
 # debug
 npm-debug.log*
 

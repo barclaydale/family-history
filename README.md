@@ -20,10 +20,12 @@ family-uploaded photos, that's when to add Postgres back (see *Where a database 
 
 ## The content
 
-Everything comes from **`Mueller History in Milwaukee.v1.final.pdf`** — an 84-slide deck covering
-1842 to the present. The deck itself is **not in this repo** (15MB, and `.gitignore`d); it's the
-source document, and everything the site needs was transcribed out of it into `public/data/*.js` and
-`public/photos/`. Keep a copy next to your checkout if you're adding to the record.
+Everything comes from **`knowledge/Mueller History in Milwaukee.v1.final.pdf`** — an 84-slide deck
+covering 1842 to the present. `knowledge/` holds the source documents this archive is built from;
+everything the site needs was transcribed out of the deck into `public/data/*.js` and
+`public/photos/`. The site never reads these files at runtime, so they're here as the archive's
+provenance, not as a dependency — put future source material (scans, letters, documents, later
+versions of the deck) alongside it.
 
 - **84 people** (`public/data/people.js`), transcribed from the "Family Tree by Generation" chart —
   all five generations, spouses included — plus individuals named only in the narrative pages

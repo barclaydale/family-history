@@ -1,0 +1,26 @@
+{
+  "name": "family-history",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mueller family history: an interactive family tree, person wiki pages, and a playable map of where the family lived over time. Static site served by Next.js, gated by a shared family passphrase.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "next": "16.2.10",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.10",
+    "typescript": "^5"
+  }
+}

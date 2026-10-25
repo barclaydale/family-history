@@ -1,0 +1,171 @@
+/* The playable map: Leaflet canvas, the transport bar under it, and the people filter. */
+
+.map-page { padding-bottom: 10px; }
+
+.map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 286px;
+  gap: 18px;
+  align-items: start;
+}
+
+@media (max-width: 940px) { .map-layout { grid-template-columns: 1fr; } }
+
+.map-wrap {
+  position: relative;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--paper-3);
+}
+
+#leaflet-map { height: min(66vh, 620px); width: 100%; background: #e9e3d6; }
+
+@media (max-width: 940px) { #leaflet-map { height: 54vh; } }
+
+/* ---------- transport ---------- */
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--rule);
+  background: var(--paper-2);
+  flex-wrap: wrap;
+}
+
+.transport .year {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 27px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  min-width: 3.4ch;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.transport .year-sub { font-size: 11.5px; color: var(--ink-3); display: block; margin-top: 2px; letter-spacing: .06em; text-transform: uppercase; }
+
+.transport .scrub { flex: 1 1 240px; display: flex; align-items: center; gap: 10px; }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 22px;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 5px;
+  border-radius: 3px;
+  background: linear-gradient(var(--rule-strong), var(--rule-strong));
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}
+
+input[type="range"]::-moz-range-track { height: 5px; border-radius: 3px; background: var(--rule-strong); }
+input[type="range"]::-moz-range-thumb { width: 15px; height: 15px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; }
+
+.play-btn { width: 42px; height: 42px; padding: 0; justify-content: center; border-radius: 50%; flex: none; }
+.play-btn svg { width: 17px; height: 17px; }
+
+.range-fields { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-2); }
+.range-fields input { width: 72px; font-variant-numeric: tabular-nums; }
+
+/* ---------- side panel ---------- */
+.panel { background: #fff; border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.panel + .panel { margin-top: 14px; }
+
+.panel-head {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.panel-head h3 { margin: 0; font-size: 14px; }
+.panel-head .count { font-size: 12px; color: var(--ink-3); }
+.panel-body { padding: 12px 14px; }
+.panel-body.scroll { max-height: 340px; overflow: auto; }
+
+.filter-quick { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.filter-quick button { font-size: 12px; padding: 4px 10px; }
+
+.people-filter { list-style: none; margin: 0; padding: 0; font-size: 13.5px; }
+.people-filter .gen-label {
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+  margin: 12px 0 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.people-filter .gen-label:first-child { margin-top: 0; }
+.people-filter .gen-label button { font-size: 11px; padding: 2px 8px; }
+.people-filter li label { display: flex; gap: 8px; align-items: baseline; padding: 2.5px 0; cursor: pointer; }
+.people-filter li label:hover { color: var(--accent); }
+.people-filter input { margin: 0; accent-color: var(--accent); }
+.people-filter .no-places { opacity: .45; }
+
+/* ---------- who's where, this year ---------- */
+.now-list { list-style: none; margin: 0; padding: 0; font-size: 13.5px; }
+.now-list li { padding: 8px 0; border-bottom: 1px dashed var(--rule); }
+.now-list li:last-child { border-bottom: 0; }
+.now-list .pl { font-weight: 600; display: block; }
+.now-list .who { color: var(--ink-2); }
+.now-list .lbl { display: block; color: var(--ink-3); font-size: 12.5px; margin-top: 2px; }
+
+/* ---------- leaflet overrides ---------- */
+.leaflet-container { font: inherit; }
+.leaflet-popup-content { font-size: 13.5px; line-height: 1.5; margin: 12px 14px; }
+.leaflet-popup-content h4 { margin: 0 0 6px; font-size: 15px; }
+.leaflet-popup-content ul { margin: 6px 0 0; padding-left: 16px; }
+.leaflet-popup-content li { margin-bottom: 3px; }
+.leaflet-popup-content .approx { color: var(--ink-3); font-size: 12px; font-style: italic; }
+
+.marker-pin {
+  background: var(--accent);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.marker-pin.event { background: #7a5c2e; }
+.marker-pin.battle { background: #6b3a30; }
+
+.map-legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  padding: 10px 2px 0;
+  align-items: center;
+}
+
+.map-legend .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; margin-right: 5px; vertical-align: -1px; }

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mueller Family History</title>
+<meta name="description" content="An interactive family tree of the Mueller family of Milwaukee and Waukesha Counties, from the 1842 arrival through five generations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/tree.css">
+</head>
+<body data-page="tree">
+<header id="site-header" class="site-header"></header>
+
+<main>
+  <div class="wrap page-head">
+    <p class="eyebrow">Milwaukee &amp; Waukesha Counties, from 1842</p>
+    <h1>The Mueller Family</h1>
+    <p class="lede">Carl and Elizabeth Mueller landed in New York on July 26, 1842 with six children, and
+    bought eighty acres in Milwaukee County a month later. What follows is five generations of what
+    happened next — a Civil War captain buried in Georgia, a midwife who delivered two thousand babies,
+    a social club with a place on Pewaukee Lake, a lithography company, and a great many painters.
+    Click any name to read their page.</p>
+
+    <div class="tree-toolbar">
+      <div class="grow" style="position:relative">
+        <input type="search" id="tree-search" placeholder="Search for a name…" autocomplete="off" aria-label="Search for a person">
+      </div>
+      <a class="btn" href="map.html">Play the map</a>
+      <a class="btn" href="stories.html">Read the stories</a>
+    </div>
+  </div>
+
+  <div class="search-results" id="tree-search-results" hidden></div>
+
+  <div class="tree-scroll">
+    <div class="tree-board" id="tree-board"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="tree-legend">
+      <span><span class="swatch direct"></span>The direct line this history follows</span>
+      <span><span class="swatch"></span>Siblings, spouses, and the wider family</span>
+      <span>Hover a card to trace its line. Scroll sideways for later generations.</span>
+    </div>
+    <hr class="rule-orn">
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="data/people.js"></script>
+<script src="data/places.js"></script>
+<script src="data/stories.js"></script>
+<script src="data/photos.js"></script>
+<script src="js/core.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/tree.js"></script>
+</body>
+</html>

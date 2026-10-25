@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in · Mueller Family History</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  body { display: grid; place-items: center; min-height: 100vh; padding: 24px; }
+  .gate { width: min(300px, 100%); }
+  .gate input { width: 100%; padding: 11px 13px; margin-bottom: 10px; }
+  .gate .btn { width: 100%; justify-content: center; }
+  .gate .msg { font-size: 13px; margin: 10px 0 0; min-height: 1.3em; color: var(--accent); text-align: center; }
+</style>
+</head>
+<body>
+<main class="gate">
+  <form id="gate-form">
+    <input type="password" id="code" placeholder="Password" aria-label="Password" autocomplete="current-password" autofocus required>
+    <button type="submit" class="btn primary">Enter</button>
+    <p class="msg" id="msg" role="status"></p>
+  </form>
+</main>
+
+<script>
+  document.getElementById("gate-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var msg = document.getElementById("msg");
+    var code = document.getElementById("code").value;
+    msg.textContent = "Checking…";
+    try {
+      var r = await fetch("/api/login", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ code: code }),
+      });
+      if (r.ok) {
+        var next = new URLSearchParams(location.search).get("next") || "/";
+        location.href = next.startsWith("/") ? next : "/";
+        return;
+      }
+      var j = await r.json().catch(function () { return {}; });
+      msg.textContent = r.status === 401
+        ? "Incorrect password."
+        : (j.message || "Sign-in isn't set up on the server yet.");
+    } catch (err) {
+      msg.textContent = "Couldn't reach the server. Try again.";
+    }
+  });
+</script>
+</body>
+</html>

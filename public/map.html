@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Map · Mueller Family History</title>
+<meta name="description" content="A playable map of where the Mueller family was, year by year, from Silesia in 1789 to Wisconsin in the present.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/map.css">
+</head>
+<body data-page="map">
+<header id="site-header" class="site-header"></header>
+
+<main class="wrap map-page">
+  <div class="page-head">
+    <p class="eyebrow">Where everyone was, year by year</p>
+    <h1>The map</h1>
+    <p class="lede">Press play and the years run forward: the family leaves Silesia in 1842, lands in
+    New York, settles eighty acres west of Milwaukee, scatters across Civil War battlefields in the
+    1860s, gathers every summer at Pewaukee Lake, then at Beaver Lake, and spreads out again.
+    Everyone is shown at once by default — use the filter to follow one person or one generation.</p>
+  </div>
+
+  <div class="map-layout">
+    <div>
+      <div class="map-wrap">
+        <div id="leaflet-map"></div>
+        <div class="transport">
+          <button type="button" class="btn primary play-btn" id="play-btn" aria-label="Play"></button>
+          <div>
+            <span class="year" id="year-label">1789</span>
+            <span class="year-sub" id="year-sub"></span>
+          </div>
+          <div class="scrub">
+            <input type="range" id="year-scrub" aria-label="Year">
+          </div>
+          <div class="range-fields">
+            <label>From <input type="number" id="from-year" aria-label="Range start year"></label>
+            <label>to <input type="number" id="to-year" aria-label="Range end year"></label>
+          </div>
+          <select id="speed" aria-label="Playback speed">
+            <option value="700">Slow</option>
+            <option value="320" selected>Normal</option>
+            <option value="140">Fast</option>
+          </select>
+        </div>
+      </div>
+      <div class="map-legend">
+        <span><span class="dot" style="background:#8a4b38"></span>Living, working, visiting</span>
+        <span><span class="dot" style="background:#6b3a30"></span>Battles</span>
+        <span><span class="dot" style="background:#7a5c2e"></span>Journeys and single-year events</span>
+        <span>The number on each pin is how many selected people were there that year.</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel">
+        <div class="panel-head">
+          <h3>In this year</h3>
+        </div>
+        <div class="panel-body scroll">
+          <ul class="now-list" id="now-list"></ul>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Who to show</h3>
+          <span class="count" id="filter-count"></span>
+        </div>
+        <div class="panel-body">
+          <div class="filter-quick">
+            <button type="button" class="btn" id="select-all">Everyone</button>
+            <button type="button" class="btn" id="select-none">No one</button>
+          </div>
+        </div>
+        <div class="panel-body scroll" style="padding-top:0">
+          <ul class="people-filter" id="people-filter"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="rule-orn">
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="data/people.js"></script>
+<script src="data/places.js"></script>
+<script src="data/stories.js"></script>
+<script src="data/photos.js"></script>
+<script src="js/core.js"></script>
+<script src="js/ui.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/map.js"></script>
+</body>
+</html>
